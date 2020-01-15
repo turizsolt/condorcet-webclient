@@ -1,14 +1,14 @@
-import { AnyAction } from 'redux';
-import { PreferenceState } from './state/PreferenceState';
+import { AnyAction } from "redux";
+import { PreferenceState } from "./state/PreferenceState";
 
 const initialState: PreferenceState = {
   list: [],
   selection: [],
-  name: '',
-  messageType: 'none',
-  message: '',
+  name: "",
+  messageType: "none",
+  message: "",
   displayOptions: false,
-  electionId: ''
+  electionId: ""
 };
 
 export const preferenceReducer = (
@@ -16,57 +16,57 @@ export const preferenceReducer = (
   action: AnyAction
 ): PreferenceState => {
   switch (action.type) {
-    case 'FETCH_REQUESTED':
+    case "FETCH_REQUESTED":
       return {
         ...state,
-        messageType: 'waiting',
-        message: 'Please wait, ballot is loading...',
+        messageType: "waiting",
+        message: "Please wait, ballot is loading...",
         electionId: action.payload.id
       };
 
-    case 'FETCH_SUCCEEDED':
+    case "FETCH_SUCCEEDED":
       return {
         ...state,
         list: action.payload.list,
-        messageType: 'none',
-        message: '',
+        messageType: "none",
+        message: "",
         displayOptions: true
       };
 
-    case 'FETCH_FAILED':
+    case "FETCH_FAILED":
       return {
         ...state,
         list: [],
-        messageType: 'error',
-        message: 'Not able to connect server. Refresh and try again.',
+        messageType: "error",
+        message: "Not able to connect server. Refresh and try again.",
         displayOptions: false
       };
 
-    case 'SUBMIT_REQUESTED':
+    case "SUBMIT_REQUESTED":
       return {
         ...state,
-        messageType: 'waiting',
-        message: 'Uploading your vote to the server...',
+        messageType: "waiting",
+        message: "Uploading your vote to the server...",
         displayOptions: false
       };
 
-    case 'SUBMIT_SUCCEEDED':
+    case "SUBMIT_SUCCEEDED":
       return {
         ...state,
-        messageType: 'success',
-        message: 'Submitted, thank you.',
+        messageType: "success",
+        message: "Submitted, thank you.",
         displayOptions: false
       };
 
-    case 'SUBMIT_FAILED':
+    case "SUBMIT_FAILED":
       return {
         ...state,
-        messageType: 'error',
-        message: 'Failed to submit, wait and try again.',
+        messageType: "error",
+        message: "Failed to submit, wait and try again.",
         displayOptions: true
       };
 
-    case 'SELECT':
+    case "SELECT":
       const { index } = action.payload;
       const elem = state.list.find(e => e.id === index);
       return {
@@ -75,7 +75,7 @@ export const preferenceReducer = (
         selection: [...state.selection, ...(elem !== undefined ? [elem] : [])]
       };
 
-    case 'UNSELECT':
+    case "UNSELECT":
       const { index: index2 } = action.payload;
       const elem2 = state.selection.find(e => e.id === index2);
       return {
@@ -84,7 +84,7 @@ export const preferenceReducer = (
         list: [...state.list, ...(elem2 !== undefined ? [elem2] : [])]
       };
 
-    case 'TOP':
+    case "TOP":
       const { index: index3 } = action.payload;
       const elem3 = state.selection.find(e => e.id === index3);
       return {
@@ -95,7 +95,7 @@ export const preferenceReducer = (
         ]
       };
 
-    case 'BOTTOM':
+    case "BOTTOM":
       const { index: index4 } = action.payload;
       const elem4 = state.selection.find(e => e.id === index4);
       return {
@@ -106,7 +106,7 @@ export const preferenceReducer = (
         ]
       };
 
-    case 'UP':
+    case "UP":
       const { index: index5 } = action.payload;
       const position = state.selection.findIndex(e => e.id === index5);
 
@@ -124,7 +124,7 @@ export const preferenceReducer = (
         };
       }
 
-    case 'DOWN':
+    case "DOWN":
       const { index: index6 } = action.payload;
       const position2 = state.selection.findIndex(e => e.id === index6);
 
@@ -142,7 +142,7 @@ export const preferenceReducer = (
         };
       }
 
-    case 'SET_NAME':
+    case "SET_NAME":
       const { name } = action.payload;
 
       return {

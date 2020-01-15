@@ -12,9 +12,9 @@ export async function apiFetchUser(electionId: string) {
 
 export async function apiSubmit(electionId: string, arr: any) {
   await fetch(`http://api.condorcet.zsiri.eu/election/${electionId}/vote`, {
-    method: 'post',
+    method: "post",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(arr)
   });
