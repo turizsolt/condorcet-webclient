@@ -7,8 +7,8 @@ function* fetchList() {
   const getState = (st: RootState) => st.preferenceReducer;
   const state: PreferenceState = yield select(getState);
   try {
-    const list = yield call(apiFetchUser, state.electionId);
-    yield put({ type: "FETCH_SUCCEEDED", payload: { list } });
+    const election = yield call(apiFetchUser, state.electionId);
+    yield put({ type: "FETCH_SUCCEEDED", payload: election });
   } catch (e) {
     yield put({ type: "FETCH_FAILED" });
   }

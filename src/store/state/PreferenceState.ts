@@ -11,4 +11,6 @@ export interface PreferenceState {
   displayOptions: boolean;
 
   electionId: string;
+
+  open: boolean;
 }

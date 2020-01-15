@@ -4,10 +4,13 @@ export async function apiFetchUser(electionId: string) {
   );
   const data = await result.json();
 
-  return data.options.map((elem: string, idx: number) => ({
-    id: idx,
-    name: elem
-  }));
+  return {
+    ...data,
+    options: data.options.map((elem: string, idx: number) => ({
+      id: idx,
+      name: elem
+    }))
+  };
 }
 
 export async function apiSubmit(electionId: string, arr: any) {

@@ -5,6 +5,7 @@ const initialState: PreferenceState = {
   list: [],
   selection: [],
   name: "",
+  open: true,
   messageType: "none",
   message: "",
   displayOptions: false,
@@ -27,7 +28,8 @@ export const preferenceReducer = (
     case "FETCH_SUCCEEDED":
       return {
         ...state,
-        list: action.payload.list,
+        list: action.payload.options,
+        open: action.payload.open,
         messageType: "none",
         message: "",
         displayOptions: true
