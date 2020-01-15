@@ -1,8 +1,8 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { Ballot } from './components/Ballot';
-import { store } from './store';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React from "react";
+import { Provider } from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Ballot } from "./components/Ballot";
+import { store } from "./store";
 
 const App: React.FC = () => {
   return (
