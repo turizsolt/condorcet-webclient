@@ -1,19 +1,21 @@
-export async function apiFetchUser() {
-    const result = await fetch('http://api.condorcet.zsiri.eu/election/1/');
-    const data = await result.json();
+export async function apiFetchUser(electionId: string) {
+  const result = await fetch(
+    `http://api.condorcet.zsiri.eu/election/${electionId}`
+  );
+  const data = await result.json();
 
-    return data.options.map((elem: string, idx: number) => ({
-        id: idx,
-        name: elem,
-    }));
+  return data.options.map((elem: string, idx: number) => ({
+    id: idx,
+    name: elem
+  }));
 }
 
-export async function apiSubmit(arr: any) {
-    await fetch('http://api.condorcet.zsiri.eu/election/1/vote', {
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(arr),
-    });
+export async function apiSubmit(electionId: string, arr: any) {
+  await fetch(`http://api.condorcet.zsiri.eu/election/${electionId}/vote`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(arr)
+  });
 }
